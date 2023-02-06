@@ -1,5 +1,6 @@
 # Put the code for your API here.
 import os
+import pickle
 from pandas import DataFrame
 from fastapi import FastAPI
 from api.schema import ModelInput
@@ -24,18 +25,24 @@ cat_features = [
 # Instantiate the app.
 app = FastAPI()
 
+# load file on startup to avoid latency on prediction
+@app.on_event("startup")
+async def startup_event(): 
+    global model, encoder, lb
+    model = pickle.load(open("./model/model.pkl", "rb"))
+    encoder = pickle.load(open("./model/encoder.pkl", "rb"))
+    lb = pickle.load(open("./model/lb.pkl", "rb"))
+
+
 # Define a GET on the specified endpoint.
 @app.get("/")
 async def say_hello():
     return {'greeting': 'Hello World!'}
 
+
 @app.post("/predict")
 async def predict(input_data: ModelInput):
     X_input = DataFrame([input_data.dict()])
-
-    # Proces the test data with the process_data function.
-    encoder = load_encoder(os.path.join('model', 'encoder_dtc.pkl'))
-    lb = load_lb(os.path.join('model', 'lb_dtc.pkl'))
 
     # Run: process data
     X_infer, _, _, _ = process_data(
