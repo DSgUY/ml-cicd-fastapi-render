@@ -21,7 +21,8 @@ recall: 0.639
 fbeta: 0.623
 
 ## Ethical Considerations
-Metics were also calculated on data slices. Saved results are in 'slice_output.txt'
+Metics were also calculated on data slices. Saved results are in 'slice_output.txt'.
+The model may potentially discriminate people so further analysis should be done.
 
 ## Caveats and Recommendations
 The census.csv used in this project differs from the UCI Machine Learning Repository as it has only 32561 rows.
