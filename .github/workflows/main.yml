@@ -4,6 +4,10 @@ on:
     branches: [ "deploy" ]
   pull_request:
     branches: [ "deploy" ]
+
+permissions:
+  contents: write
+
 jobs:
   deploy:
     name: Wait for Deploy
