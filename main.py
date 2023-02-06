@@ -34,11 +34,11 @@ async def startup_event():
     lb = pickle.load(open("./model/lb.pkl", "rb"))
 
 
-
 # Define a GET on the specified endpoint.
 @app.get("/")
 async def say_hello():
     return {'greeting': 'Hello World!'}
+
 
 @app.post("/predict")
 async def predict(input_data: ModelInput):
