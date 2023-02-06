@@ -1,7 +1,9 @@
 name: Render
 on:
+  push:
+    branches: [ "deploy" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "deploy" ]
 jobs:
   deploy:
     name: Wait for Deploy
