@@ -1,5 +1,4 @@
 name: Render
-
 on:
   push:
     branches: [ "deploy" ]
@@ -7,8 +6,7 @@ on:
     branches: [ "deploy" ]
 
 permissions:
-  contents: write
-
+  contents: read
 jobs:
   deploy:
     name: Wait for Deploy
