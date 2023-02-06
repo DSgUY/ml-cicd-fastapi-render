@@ -7,13 +7,14 @@ on:
 
 permissions:
   contents: read
+  
 jobs:
   deploy:
     name: Wait for Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Wait for Render Deployment
-        uses: bounceapp/render-action@0.6.0
+      - name: Render GitHub Action
+        uses: Bounceapp/render-action@0.6.0
         with:
           render-token: ${{ secrets.RENDER_TOKEN }}
           github-token: ${{ secrets.TOKEN_GITHUB }}
